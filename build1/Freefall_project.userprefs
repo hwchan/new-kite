@@ -1,0 +1,37 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Scripts\Attack Scripts\ThrownJumpyScript.cs">
+    <Files>
+      <File FileName="Assets\Standard Assets\Scripts\VariableResourcesScript.cs" Line="23" Column="35" />
+      <File FileName="Assets\Standard Assets\Scripts\VariableScript.cs" Line="40" Column="29" />
+      <File FileName="Assets\Standard Assets\Scripts\Attack Scripts\ThrownScript.cs" Line="23" Column="58" />
+      <File FileName="Assets\Standard Assets\Scripts\Attack Scripts\ThrownJumpyScript.cs" Line="27" Column="1" />
+      <File FileName="Assets\Standard Assets\Scripts\Attack Scripts\Attack.cs" Line="54" Column="3" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp-firstpass" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Standard Assets" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Attack Scripts" expanded="True">
+                    <Node name="ThrownJumpyScript.cs" selected="True" />
+                  </Node>
+                  <Node name="Enemy Types" expanded="True">
+                    <Node name="Pick Up" expanded="True" />
+                  </Node>
+                  <Node name="System" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
