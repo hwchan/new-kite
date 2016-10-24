@@ -118,7 +118,7 @@ public class EnemyScript : MonoBehaviour {
 	/// Radius to call for help.
 	/// </param>
 	public void CallForHelp(float callRadius){
-		Collider[] col = Physics.OverlapSphere(transform.position, callRadius, 1 << 8);
+		Collider[] col = Physics.OverlapSphere(transform.position, callRadius, VariableScript.intHostileLayerMask);
 		foreach(Collider c in col){
 			EnemyScript es = c.GetComponent<EnemyScript>();
 			if(es != null){	

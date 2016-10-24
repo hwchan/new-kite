@@ -35,7 +35,8 @@ public class PlayerExplodingShot : ExplodingShot {
 				
 		SetProjectileParams(target, basePrimaryDamage, aoeDamage, aoe, aoePush, 
 			BulletScript.ENEMIES, 8, Vector3.Distance(target, transform.position));
-		
-		print ("Base: " + basePrimaryDamage + "\nAoe: " + aoeDamage + "\nPush: " + aoePush);
+
+        Debug.Log(target);
+		//print ("Base: " + basePrimaryDamage + "\nAoe: " + aoeDamage + "\nPush: " + aoePush);
 	}
 }

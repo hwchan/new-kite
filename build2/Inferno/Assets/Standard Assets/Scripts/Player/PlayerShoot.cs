@@ -17,18 +17,11 @@ public class PlayerShoot : MonoBehaviour {
 	private PlayerAbilityManager pam;
 	private PlayerStats pstat;
 	
-//	public int damage = 1;
-//	public float attackRange = 3.25f;
 	public GameObject target;
 	
-//	private float timePerCharge = .15f;
 	[SerializeField]
 	private float chargeTimeModifier = 0;
 	
-//	public float TimePerCharge{
-//		get{return timePerCharge;}
-//		set{timePerCharge = value;}
-//	}
 	public float ChargeTimeModifier{
 		get{return chargeTimeModifier;}
 		set{chargeTimeModifier = value;}
@@ -107,7 +100,7 @@ public class PlayerShoot : MonoBehaviour {
 			Input.GetButtonUp("Ability3") || Input.GetButtonUp("Ability4") ){
 			
 			// Unlocks ability input
-			abilityInputLock = (short)-1;
+			abilityInputLock = -1;
 			
 			// Sets up and fires an exploding shot
 			if(objProjectile != null){
@@ -116,6 +109,8 @@ public class PlayerShoot : MonoBehaviour {
 				objProjectile.transform.parent = null;
 				ExplodingShot exs = objProjectile.GetComponent<ExplodingShot>();
 				objProjectile.transform.position = transform.position;
+                Vector3 targetLoc = GetTargetLocation();
+                objProjectile.transform.localScale = new Vector3(Mathf.Abs(objProjectile.transform.localScale.x), objProjectile.transform.localScale.y, objProjectile.transform.localScale.z);
 				
 				// Set up projectile for launching
 				BulletScript bs = objProjectile.GetComponent<BulletScript>();
@@ -127,7 +122,7 @@ public class PlayerShoot : MonoBehaviour {
 				
 				// Set up special properties of ability
 				if(exs != null){
-					exs.SetUp(GetTargetLocation(), chargeLevel, pstat.damage);
+					exs.SetUp(targetLoc, chargeLevel, pstat.damage);
 				}
 				
 				// Reset projectiles back to default
@@ -136,7 +131,9 @@ public class PlayerShoot : MonoBehaviour {
 				
 				// Make casting a new attack slower than charging an existing attack
 				chargeTimer = Time.time + 2.5f*(pstat.chargeTime + ChargeTimeModifier);
-				
+
+
+                //Debug.DrawLine(transform.position, targetLoc, Color.red, 2);
 			}
 			chargeLevel = 0;
 		}
@@ -213,83 +210,5 @@ public class PlayerShoot : MonoBehaviour {
 			}
 		}
 	}
-	
-//	// If the player clicks on an enemy, set that as the target (if valid)
-//	private void HandleTargetting(){
-//		if(ps.shootTarget != null){
-//			if(CheckTarget(ps.shootTarget)){
-//				target = ps.shootTarget;
-//			}
-//			else{
-//				AutoTarget();
-//			}
-//		}
-//		else{
-//			AutoTarget();
-//		}
-//	}
-//	
-//	// Finds all enemies in a radius of 'aggroradius' and targets the closest one
-//	private void AutoTarget(){
-//		
-//		targetArray = UtilityScript.GetObjectsInLOS(transform.position, pstat.attackRange, 1 << 8 | 1 << 25, collider).ToArray();
-//		shortestDist = 9999f;
-//		target = null;
-//		
-//		for(int i=0; i<targetArray.Length; i++){
-//			// Find the closest one
-//			float dist = Vector3.Distance(targetArray[i].transform.position, transform.position);
-//			if(targetArray[i].tag == "Enemy" && dist < shortestDist){
-//				shortestDist = dist;
-//				target = targetArray[i].gameObject;
-//			}
-//		}
-//	}
-//	
-//	// Checks whether the GameObject is valid (enemy, proximity, LoS)
-//	private bool CheckTarget(GameObject o){
-//		if(o == null){
-//			return false;
-//		}
-//		EnemyScript oes = o.GetComponent<EnemyScript>();
-//		float distance = Vector3.Distance(o.transform.position, transform.position);
-//		if(oes != null && distance <= pstat.attackRange){
-//			// Check LoS now
-//			if(!Physics.Raycast(transform.position, o.transform.position - transform.position, distance, 1 << 27)){
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-//	
-//	// Checks if player is NOT moving and the attack cooldown is finished to start shooting
-//	private void HandleShooting(){
-//		firingTimer++;
-//		if(ps.GetMovement() == Vector3.zero && target != null){ 
-//			ps.HandleDirection(target.transform.position - transform.position, PlayerMovement.ATTACKING);
-//			if(firingTimer >= firingCooldown/Time.deltaTime){	// controller.velocity.magnitude would sometimes flicker to 0 even when moving
-//				HandleBullets();
-//			}
-//		}
-//		else{
-//			animationTimer = 0;
-//		}
-//	}
-//	
-//	private void HandleBullets(){
-//		// Extra timer for animation
-//		if(animationTimer >= animationLength/Time.deltaTime){
-//			animationTimer = 0;
-//			firingTimer = 0;
-//			// Create and set bullet parameters 
-//			GameObject objCreatedBullet = (GameObject) Instantiate(VariableScript.objHookshot, transform.position, Quaternion.identity);
-//			Physics.IgnoreCollision(objCreatedBullet.collider, collider);
-//			HookShotProjectileScript hkps = objCreatedBullet.GetComponent<HookShotProjectileScript>();
-//			hkps.SetMoveVec(target.transform.position - transform.position);
-//			hkps.SetDamage(damage);
-//		}
-//		animationTimer++;
-//	}
-	
-	
+
 }
