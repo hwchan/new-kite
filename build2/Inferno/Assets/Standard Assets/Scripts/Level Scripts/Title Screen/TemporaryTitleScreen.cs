@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TemporaryTitleScreen : MonoBehaviour {
 	
@@ -24,7 +25,8 @@ public class TemporaryTitleScreen : MonoBehaviour {
 	
 	private void ShowNextButton(){
 		if(GUI.Button(new Rect(Screen.width - 150, Screen.height - 100, 100, 60), buttonText)){
-			Application.LoadLevel(levelLoaded);
+			//Application.LoadLevel(levelLoaded);
+            SceneManager.LoadScene("level01 (limbo)");
 		}
 	}
 }

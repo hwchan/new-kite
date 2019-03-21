@@ -49,7 +49,7 @@ public class VariableScript : MonoBehaviour
 		playersTag = objPlayer1.tag;
 		// 8: Enemy, 15: Spawn Point, 20: Flying, 24: Neutral, 25: Immune     
 		intEnemyLayerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Flying") | 1 << LayerMask.NameToLayer("Neutral") | 1 << LayerMask.NameToLayer("Immune") | 1 << LayerMask.NameToLayer("Spawn Point");
-		intHostileLayerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Spawn Point") | 1 << LayerMask.NameToLayer("Immune");
+		intHostileLayerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Flying") | 1 << LayerMask.NameToLayer("Spawn Point") | 1 << LayerMask.NameToLayer("Immune");
 		intPlayerUnitsLayerMask = 1 << LayerMask.NameToLayer("Player");
 		
 		objBullet = vrs.objBullet;

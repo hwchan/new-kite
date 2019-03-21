@@ -195,7 +195,7 @@ public class PlayerShoot : MonoBehaviour {
 		for(int i=0; i<targetArray.Length; i++){
 			// Find the closest one
 			float dist = Vector3.Distance(targetArray[i].transform.position, transform.position);
-			if(targetArray[i].layer == LayerMask.NameToLayer("Enemy") && dist < shortestDist){
+			if(targetArray[i].tag == "Enemy" && dist < shortestDist){
 				shortestDist = dist;
 				target = targetArray[i].gameObject;
 			}

@@ -51,7 +51,7 @@ public class DoorScript : MonoBehaviour {
 		Destroy(newWall.GetComponent<DoorScript>());
 		newWall.transform.parent = transform;
 		newWall.GetComponent<Renderer>().material = VariableScript.matLineOfSightSolid;
-		newWall.layer = 29;
+		newWall.layer = 21;
 		newWall.tag = "Untagged";
 				
 		// Change the y scale
