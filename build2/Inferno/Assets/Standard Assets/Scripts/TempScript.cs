@@ -3,13 +3,16 @@ using System.Collections;
 
 public class TempScript : ExpiryScript {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-//		AnimationScript.AnimateSprite(renderer, 2, 1, 0, 0, 2, 4);
-	}
+    // Update is called once per frame
+    public Vector3 target;
+    public float speed = 1;
+
+    void Update()
+    {
+        if (target != null)
+        {
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, target, step);
+        }
+    }
 }

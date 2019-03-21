@@ -31,11 +31,11 @@ public class PlayerExplodingShot : ExplodingShot {
 		int basePrimaryDamage = Mathf.CeilToInt(charge*charge*.5f + 2*damage);
 		int aoeDamage = Mathf.FloorToInt(basePrimaryDamage * .5f);
 		float aoe = ((.13f+.02f*charge)*3f + damage*.04f);
-		float aoePush = ((charge-1)*(charge-1)*.125f*(1+.2f*damage));
+		float aoePush = ((charge-1)*(charge-1)*.05f*(1+.2f*damage));
 				
-		SetProjectileParams(target, basePrimaryDamage, aoeDamage, aoe, aoePush, 
-			BulletScript.ENEMIES, 8, Vector3.Distance(target, transform.position));
-		
+		SetProjectileParams(target, basePrimaryDamage, aoeDamage, aoe, aoePush,
+            ENEMIES, 8, Vector3.Distance(target, transform.position));
+
 		print ("Base: " + basePrimaryDamage + "\nAoe: " + aoeDamage + "\nPush: " + aoePush);
 	}
 }

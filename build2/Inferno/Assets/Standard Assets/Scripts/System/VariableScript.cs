@@ -5,6 +5,7 @@ public class VariableScript : MonoBehaviour
 	public static int intEnemyLayerMask;
 	public static int intPlayerUnitsLayerMask;
 	public static int intHostileLayerMask;
+    public static int intWallLayerMask;
 	
 	public static GameObject[] players;
 	
@@ -15,6 +16,7 @@ public class VariableScript : MonoBehaviour
 	public static PlayerStats scrPlayerExperience1;
 	public static PlayerHealthScript scrPlayerHealthScript1;
 	public static PlayerShoot scrPlayerShoot1;
+    public static PlayerStats scrPlayerStats1;
 	public static bool thrown1 = false;
 	//public static GameObject objPlayer2;
 	
@@ -44,15 +46,17 @@ public class VariableScript : MonoBehaviour
 		scrPlayerExperience1 = objPlayer1.GetComponent<PlayerStats>();
 		scrPlayerHealthScript1 = objPlayer1.GetComponent<PlayerHealthScript>();
 		scrPlayerShoot1 = objPlayer1.GetComponent<PlayerShoot>();
-		//objPlayer2 = vrs.objPlayer2;
-		
-		playersTag = objPlayer1.tag;
+        scrPlayerStats1 = objPlayer1.GetComponent<PlayerStats>();
+        //objPlayer2 = vrs.objPlayer2;
+
+        playersTag = objPlayer1.tag;
 		// 8: Enemy, 15: Spawn Point, 20: Flying, 24: Neutral, 25: Immune     
 		intEnemyLayerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Flying") | 1 << LayerMask.NameToLayer("Neutral") | 1 << LayerMask.NameToLayer("Immune") | 1 << LayerMask.NameToLayer("Spawn Point");
 		intHostileLayerMask = 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Flying") | 1 << LayerMask.NameToLayer("Spawn Point") | 1 << LayerMask.NameToLayer("Immune");
 		intPlayerUnitsLayerMask = 1 << LayerMask.NameToLayer("Player");
-		
-		objBullet = vrs.objBullet;
+        intWallLayerMask = 1 << LayerMask.NameToLayer("Wall");
+
+        objBullet = vrs.objBullet;
 		objExplodingShot = vrs.objExplodingShot;
 		objArrow = vrs.objArrow;
 		objFire = vrs.objFire;

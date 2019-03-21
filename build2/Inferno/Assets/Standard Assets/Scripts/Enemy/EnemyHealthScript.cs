@@ -53,8 +53,10 @@ public class EnemyHealthScript : HealthScript {
 		if(curHp <= 0){
 			return;
 		}
+
 		if(amount > 0 && Time.time > invuln){
-			curHp -= amount;
+            GUIManager.FloatingText(amount.ToString(), transform.position, .75f);
+            curHp -= amount;
 			invuln = invuln_len + Time.time;
 		}
 		es.CallForHelp(callForHelpRange);
@@ -128,6 +130,7 @@ public class EnemyHealthScript : HealthScript {
 	}
 	
 	protected override void HandleDeath(){
+        es.GetComponent<Collider>().enabled = false;
 		es.RemoveMe();
 		MonoBehaviour[] temp = GetComponents<MonoBehaviour>();
 		foreach(MonoBehaviour x in temp){

@@ -118,7 +118,7 @@ public class EnemyScript : MonoBehaviour {
 	/// Radius to call for help.
 	/// </param>
 	public void CallForHelp(float callRadius){
-		Collider[] col = Physics.OverlapSphere(transform.position, callRadius, 1 << 8);
+		Collider[] col = Physics.OverlapSphere(transform.position, callRadius, VariableScript.intHostileLayerMask);
 		foreach(Collider c in col){
 			EnemyScript es = c.GetComponent<EnemyScript>();
 			if(es != null){	
@@ -560,14 +560,8 @@ public class EnemyScript : MonoBehaviour {
 	/// Pause/stun the entity. Damage and EnemyType scripts are disabled when paused
 	/// </summary>
 	public void Pause() {
-//		if(enemyTypesArr != null){
-//			foreach(EnemyType foo in enemyTypesArr){
-//				foo.StopMe();
-//			}
-//		}
 		CancelInvoke("Unpause"); // cancel any existing unpause-in-wait
 		isFree = 0;
-//		transform.Find("Exclamation Prefab").renderer.enabled = false;
 	}
 	
 	/// <summary>
@@ -582,9 +576,6 @@ public class EnemyScript : MonoBehaviour {
 	/// Unpause/stun the entity. Damage and EnemyType scripts are reenabled when unpaused
 	/// </summary>
 	public void Unpause() {	
-//		foreach(EnemyType foo in enemyTypesArr){
-//			foo.StartMe();
-//		}
 		isFree = 1;
 		transform.Find("Plane").GetComponent<Renderer>().material.color = Color.white;
 	}

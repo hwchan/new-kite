@@ -65,8 +65,8 @@ public class BulletScript : MonoBehaviour {
 											float projectileSpeed, float projectileDistance){
 		moveVec = projectileTarget - transform.position;
 		damage = projectileDamage;
-		moveSpeed = projectileSpeed;
-		timeUntilDeath = projectileDistance/projectileSpeed;
+        moveSpeed = projectileSpeed;
+        timeUntilDeath = projectileDistance/projectileSpeed;
 		targetGroup = projectileTargetGroup;
 		if(projectileTargetGroup == ENEMIES){
 			gameObject.layer = LayerMask.NameToLayer("Projectile (Player)");	// Projectile (Player): only hits enemies
@@ -74,7 +74,7 @@ public class BulletScript : MonoBehaviour {
 		else if(projectileTargetGroup == PLAYERS){
 			gameObject.layer = LayerMask.NameToLayer("Projectile (Enemy)");	// Projectile: only hits players
 		}
-//		print(moveVec);
+
 		// Rotates the plane where the material is on
 		Quaternion bulletRotate = Quaternion.LookRotation(moveVec,Vector3.up);
 		bulletRotate.eulerAngles = new Vector3(bulletRotate.eulerAngles.x,bulletRotate.eulerAngles.y+45,bulletRotate.eulerAngles.z);

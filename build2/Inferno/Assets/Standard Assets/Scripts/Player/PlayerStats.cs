@@ -39,7 +39,10 @@ public class PlayerStats : MonoBehaviour {
 	}
 	public int UpgradeHealthPoints{
 		get{return upgradeHealth;}
-	}				
+	}	
+    public float AttackRange{
+        get { return attackRange; }
+    }			
 	
 	private int upgradeSightAndRange = 1;		//Sight: increase line of sight and attack range
 	private int upgradeMoveAndAttackSpeed = 1;	//Speed: increase movement and attack speed

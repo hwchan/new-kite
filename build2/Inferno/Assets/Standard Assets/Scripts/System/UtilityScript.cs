@@ -95,7 +95,7 @@ public static class UtilityScript {
 		List<GameObject> collided = new List<GameObject>();
 		Collider[] col = Physics.OverlapSphere(origin, range, mask);
 		
-		int hit = 1 << 27;	// Wall layer blocks LoS
+		int hit = VariableScript.intWallLayerMask;	// Wall layer blocks LoS
 		foreach(Collider o in col){
 			if(o != ignore && !Physics.Raycast(origin, o.transform.position - origin, Vector3.Distance(o.transform.position, origin), hit)){
 				collided.Add(o.gameObject);
@@ -103,6 +103,22 @@ public static class UtilityScript {
 		}
 		return collided;
 	}
+
+    /// <summary>Checks if obj1 is in range of obj2 accounting for walls blocking LOS</summary>
+    public static bool IsObjectInLOS(GameObject obj1, GameObject obj2, float range)
+    {
+        Vector3 pos1 = obj1.transform.position;
+        Vector3 pos2 = obj2.transform.position;
+        int hit = VariableScript.intWallLayerMask;
+        //Debug.Log(Mathf.Abs(pos1.x - pos2.x) + " : " + Mathf.Abs(pos1.z - pos2.z) + " : " + range);
+        return CheckIfAtTarget(pos1, pos2, range) && !Physics.Raycast(pos1, pos2 - pos1, range, hit);
+    }
+
+    /// <summary>Checks if the gameobject with the pstat is in range of obj account for walls blocking LOS</summary>
+    public static bool IsObjectInLOS(PlayerStats pstat, GameObject obj)
+    {
+        return IsObjectInLOS(pstat.gameObject, obj, pstat.AttackRange);        
+    }
 	
 	/// <summary>
 	/// Checks if an object is at target location. Use this instead of Vector3.Distance checks for better performance.
@@ -117,8 +133,10 @@ public static class UtilityScript {
 	/// <param name='target'>
 	/// Target location.
 	/// </param>
-	public static bool CheckIfAtTarget(Vector3 position, Vector3 target){
-		if( (Mathf.Abs(position.x - target.x) < .1f) && (Mathf.Abs(position.z - target.z) < .1f) )
+	public static bool CheckIfAtTarget(Vector3 position, Vector3 target, float distance = .5f){
+        //Debug.Log((Mathf.Abs(position.x - target.x)) + " : " + (Mathf.Abs(position.z - target.z)) + " : " + distance);
+
+        if ( (Mathf.Abs(position.x - target.x) < distance) && (Mathf.Abs(position.z - target.z) <= distance) )
 			return true;
 		else
 			return false;
